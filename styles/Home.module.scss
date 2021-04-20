@@ -1,0 +1,124 @@
+.wrapper{
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    user-select: none;
+    .main{
+        margin: 1rem 2rem;
+        height: calc(96vh - 2rem);
+        display: flex;
+        box-sizing: border-box;
+        .left{
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            .header{
+                display: flex;
+                align-items: center;
+                width: 50%;
+                
+                img{
+                    width: 5rem;
+                } 
+                h1{
+                    text-transform: uppercase;
+                }
+            }  
+            .info{
+                margin: 20% 0;
+                font-size: 2em;
+                h2{
+                    margin-bottom: .5em;
+                }
+            } 
+            .input{
+                padding: 2em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                background-color: hsla(0, 0%, 0%, 0.2);
+                input{
+                    display: none;
+                }
+                .input_label{
+                    border: 1px solid rgb(94, 88, 88);
+                    background-color: rgb(255, 255, 255);
+                    padding: .1em .3em;
+                    margin-left: .2em;
+                    font-size: 1em;
+                    border-radius: 5px;
+                }
+            } 
+            .message{
+                margin-top: .2em;
+                width: 80%;
+                text-align: center;
+                font-weight: bold;
+                .error{
+                    color: red;
+                }
+                .success{
+                    color: blue;
+                    a{
+                    color: #fff;
+                    margin-left: .1em;
+                    padding: 0 .5em;
+                    background-color: blue;
+                    font-weight: 500;
+                    border-radius: 5px;
+                    font-size: .9em;
+                    }
+                }
+            }  
+        }
+        .right{
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img{
+                max-width: 100%;
+                width: 60%;
+            }
+        }
+        
+    }
+}
+
+@media (max-width:600px) {
+    .main{
+        flex-direction: column;
+        .left, .right{
+            width: 100% !important;
+        }
+         
+        .left{ 
+            .info{
+                margin: 15% 0 !important;
+                font-size: 1.6em !important;
+                p{
+                    font-size: .8em;
+                }
+            } 
+            .input{
+                padding: 1.2em !important;
+               
+                .input_label{
+                    font-size: .8em !important;
+                }
+            }
+        }
+        .right{
+            margin-top: 1em;
+            img{
+                max-width: 90%;
+                height: 50%;
+            }
+        }
+       
+    }
+    
+}
