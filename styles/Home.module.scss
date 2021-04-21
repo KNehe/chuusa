@@ -61,15 +61,19 @@
                     color: red;
                 }
                 .success{
-                    color: blue;
+                    color: green;
                     a{
                     color: #fff;
                     margin-left: .2em;
                     padding: .1em .8em;
-                    background-color: blue;
+                    background-color: rgb(22, 88, 22);
                     font-weight: 500;
                     border-radius: 5px;
                     font-size: .9em;
+                    transition:  background-color .5s ;
+                    }
+                    a:hover{
+                        background-color: green;
                     }
                 }
             }  
