@@ -5,7 +5,7 @@ import { useState } from 'react'
 export default function Home() {
   
   
-  const CONVERTAPI_SECRET = ''
+  const CONVERTAPI_SECRET = '9HB8gZv2uCtAmTlN'
 
   const [downloadUrl, setDownloadUrl] = useState('')
 
@@ -18,16 +18,37 @@ export default function Home() {
   const [errorMessage, setErrorMessage] = useState('')
 
   const onInputChangedHandler = async event =>{
-    setErrorMessage('')
-    setSuccess(false)
-    setFailure('')
-    event.preventDefault()
-
-  try{
-    const file = event.target.files[0]
+    
+    const file = event?.target?.files[0]
     
     if(!file) return
 
+    await fileConversionHandler(file)    
+  }
+  
+  const dropHandler = async event =>{
+
+    event.preventDefault()
+    
+    if(!event?.dataTransfer?.files) return
+
+    const file = event.dataTransfer.files[0]
+
+    await fileConversionHandler(file)
+    
+  }
+
+  const dragOverHandler = async event =>{
+    event.preventDefault();
+  }
+
+  const fileConversionHandler = async (file) =>{
+    setErrorMessage('')
+    setSuccess(false)
+    setFailure('')
+
+  try{
+    
     setIsProcessing(true)
 
     const array =  file.name.split('.')
@@ -52,8 +73,7 @@ export default function Home() {
     setErrorMessage(error.message)
     setFailure(true)
   }
-    
-  }
+}
 
   return (
     <div className={styles.wrapper}>
@@ -75,7 +95,10 @@ export default function Home() {
             <p>Pay $0</p>
           </article>
 
-          <article className={styles.input}>
+          <article 
+            className={styles.input} 
+            onDrop={dropHandler}
+            onDragOver={dragOverHandler}>
             {isProcessing? "processing":
             <>
               <p>Drop a file here or </p>
