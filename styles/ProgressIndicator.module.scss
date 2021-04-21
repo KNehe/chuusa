@@ -1,0 +1,19 @@
+.ProgressIndicator{
+    width: 40px;
+    height: 40px;
+    border: 2px solid  rgb(46, 43, 43);
+    border-radius: 50%;
+    position: relative; 
+    border-top-color: rgb(204, 189, 189);  
+    animation: rotate 1s infinite; 
+}
+
+@keyframes rotate {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+    
+}

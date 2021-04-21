@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
 import { useState } from 'react'
+import ProgressIndicator from './components/ProgressIndicator/ProgressIndicator'
 
 export default function Home() {
   
@@ -99,7 +100,8 @@ export default function Home() {
             className={styles.input} 
             onDrop={dropHandler}
             onDragOver={dragOverHandler}>
-            {isProcessing? "processing":
+            {isProcessing?
+            <ProgressIndicator/>:
             <>
               <p>Drop a file here or </p>
               <label htmlFor="fileInput" className={styles.input_label}>Browse file</label>
