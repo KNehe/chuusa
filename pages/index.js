@@ -1,12 +1,15 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
 import { useState } from 'react'
-import ProgressIndicator from './components/ProgressIndicator/ProgressIndicator'
+import Header from './components/Header/header'
+import Info from './components/Info/Info'
+import Form from './components/Form/form'
+import Message from './components/message/message'
 
 export default function Home() {
   
   
-  const CONVERTAPI_SECRET = '9HB8gZv2uCtAmTlN'
+  const CONVERTAPI_SECRET = ''
 
   const [downloadUrl, setDownloadUrl] = useState('')
 
@@ -86,41 +89,27 @@ export default function Home() {
 
       <main className={styles.main}>
         <section className={styles.left}>
-          <header className={styles.header}>
-            <img src="undraw_Filing_system_re_56h6.svg" alt="logo"/>
-            <h1>Chuusa</h1>
-          </header>
+           
+           <Header styles={styles}/>
+           
+           <Info styles={styles}/> 
 
-          <article className={styles.info}>
-            <h2>Convert your word documents to pdf</h2>
-            <p>Pay $0</p>
-          </article>
+           <Form
+              styles={styles}
+              dropHandler={dropHandler}
+              dragOverHandler={dragOverHandler}
+              isProcessing={isProcessing}
+              onInputChangedHandler={onInputChangedHandler}
+           />
 
-          <article 
-            className={styles.input} 
-            onDrop={dropHandler}
-            onDragOver={dragOverHandler}>
-            {isProcessing?
-            <ProgressIndicator/>:
-            <>
-              <p>Drop a file here or </p>
-              <label htmlFor="fileInput" className={styles.input_label}>Browse file</label>
-              <input 
-                type='file'
-                id="fileInput" 
-                accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                multiple={false}
-                onChange={onInputChangedHandler}/> 
-              </>
-             }             
-          </article>
-
-          <article className={styles.message}>
-            {failure? <p className={styles.error}>{errorMessage}</p>: ''}
-            {success? <p className={styles.success}>Process successfull
-             <a href={downloadUrl} download>Download</a>
-             </p>: ''}
-          </article>
+           <Message
+             styles={styles}
+             failure={failure}
+             success={success}
+             downloadUrl={downloadUrl}
+             errorMessage={errorMessage}
+           />
+         
         </section> 
 
         <section className={styles.right}>
