@@ -8,7 +8,7 @@ const Message = ({
     return (
         <article className={styles.message}>
         {failure? <p className={styles.error}>{errorMessage}</p>: ''}
-        {success? <p className={styles.success}>Process successfull
+        {success? <p className={styles.success}>Process successful
          <a href={downloadUrl} download>Download</a>
          </p>: ''}
       </article>
