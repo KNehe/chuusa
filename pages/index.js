@@ -1,17 +1,15 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
 import { useState } from 'react'
-import Header from './components/Header/header'
-import Info from './components/Info/Info'
-import Form from './components/Form/form'
-import Message from './components/message/message'
+import Header from '../components/Header/header'
+import Info from '../components/Info/Info'
+import Form from '../components/Form/form'
+import Message from '../components/message/message'
+import axios from 'axios'
 
-export default function Home() {
-  
-  
-  const CONVERTAPI_SECRET = ''
+export default function Home({API_END_POINT}) {
 
-  const [downloadUrl, setDownloadUrl] = useState('')
+  const [base64String, setBase64String] = useState('')
 
   const [success, setSuccess] = useState(false)
 
@@ -20,6 +18,8 @@ export default function Home() {
   const [isProcessing, setIsProcessing] = useState(false)
 
   const [errorMessage, setErrorMessage] = useState('')
+
+  const [filename,setFileName] = useState('')
 
   const onInputChangedHandler = async event =>{
     
@@ -54,23 +54,32 @@ export default function Home() {
   try{
     
     setIsProcessing(true)
-
-    const array =  file.name.split('.')
-    const extension = array[array.length-1]
-
-    let convertApi = ConvertApi.auth({secret: CONVERTAPI_SECRET})
     
-    let params = convertApi.createParams()
-    params.add('file', file)
-    let result = await convertApi.convert(extension, 'pdf', params)
+    const data = new FormData()
 
-    let url = result.files[0].Url
+    data.append('file',file)
+    
+    const oldFileName = file?.name
 
-    setDownloadUrl(url)
+    const newFileName = oldFileName.substr(0, oldFileName.lastIndexOf(".")) + ".pdf"
+  
+    setFileName(newFileName)
 
-    setIsProcessing(false)
+    axios.post(API_END_POINT,data).then(res=>{
+      
+      setBase64String(res?.data?.data?.base64File)
 
-    setSuccess(true)
+      setIsProcessing(false)
+  
+      setSuccess(true)
+
+    }).catch(error =>{
+      setIsProcessing(false)
+  
+      setFailure(true)
+
+      setErrorMessage(error?.response?.data?.message || 'An error occurred !')
+    })
 
   }catch(error){
     setIsProcessing(false)
@@ -84,7 +93,6 @@ export default function Home() {
       <Head>
         <title>Chuusa</title>
         <link rel="icon" href="/favicon.ico" />
-        <script src="https://unpkg.com/convertapi-js/lib/convertapi.js"></script>
       </Head>
 
       <main className={styles.main}>
@@ -106,8 +114,9 @@ export default function Home() {
              styles={styles}
              failure={failure}
              success={success}
-             downloadUrl={downloadUrl}
+             base64String={base64String}
              errorMessage={errorMessage}
+             fileName={filename}
            />
          
         </section> 
@@ -120,3 +129,13 @@ export default function Home() {
     </div>
   )
 }
+
+export const getStaticProps = async () =>{
+
+  return{
+     props:{
+          API_END_POINT:process.env.API_END_POINT
+     }
+  }
+}
+
