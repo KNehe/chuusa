@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Header from '../components/Header/header'
 import Info from '../components/Info/Info'
 import Form from '../components/Form/form'
-import Message from '../components/message/message'
+import Message from '../components/Message/Message'
 import axios from 'axios'
 
 export default function Home({API_END_POINT}) {
