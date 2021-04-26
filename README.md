@@ -1,5 +1,4 @@
-[![chuusa](https://circleci.com/gh/KNehe/KNehe.chuusa.svg?style=svg)](https://app.circleci.com/pipelines/github/KNehe/chuusa)
-
+[![chuusa](https://circleci.com/gh/KNehe/chuusa.svg?style=svg)](https://app.circleci.com/pipelines/github/KNehe/chuusa)
 
 ## Chuusa
 
@@ -12,5 +11,6 @@
 ## Technologies 
 
 - Nextjs/React
-- Typecscript
+- Typescript
+- Javascript
 - Scss/css
