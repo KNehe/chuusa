@@ -1,10 +1,12 @@
 import ProgressIndicator from '../ProgressIndicator/ProgressIndicator'
+import {FC, ReactElement} from 'react'
+import { FormProps } from '../../types/props'
 
-const Form = ({styles,
+const Form: FC<FormProps> = ({styles,
             dropHandler,
             dragOverHandler,
             isProcessing,
-            onInputChangedHandler}) =>{
+            onInputChangedHandler}) : ReactElement =>{
     return (
         <article 
             className={styles.input} 

@@ -1,6 +1,7 @@
 import '../styles/globals.css'
+import { AppProps } from 'next/app'
 
-function Chuusa({ Component, pageProps }) {
+function Chuusa({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
 }
 

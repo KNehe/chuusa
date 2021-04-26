@@ -6,8 +6,11 @@ import Info from '../components/Info/Info'
 import Form from '../components/Form/form'
 import Message from '../components/Message/Message'
 import axios from 'axios'
+import { GetStaticProps} from 'next'
+import {FC, ReactElement} from 'react'
+import { HomeProps } from '../types/props'
 
-export default function Home({API_END_POINT}) {
+const Home: FC<HomeProps> = ({API_END_POINT}) : ReactElement => {
 
   const [base64String, setBase64String] = useState('')
 
@@ -21,7 +24,7 @@ export default function Home({API_END_POINT}) {
 
   const [filename,setFileName] = useState('')
 
-  const onInputChangedHandler = async event =>{
+  const onInputChangedHandler = async (event: any) =>{
     
     const file = event?.target?.files[0]
     
@@ -30,7 +33,7 @@ export default function Home({API_END_POINT}) {
     await fileConversionHandler(file)    
   }
   
-  const dropHandler = async event =>{
+  const dropHandler = async (event: any) =>{
 
     event.preventDefault()
     
@@ -42,14 +45,14 @@ export default function Home({API_END_POINT}) {
     
   }
 
-  const dragOverHandler = async event =>{
+  const dragOverHandler = async (event: any) =>{
     event.preventDefault();
   }
 
-  const fileConversionHandler = async (file) =>{
+  const fileConversionHandler = async (file:any) =>{
     setErrorMessage('')
     setSuccess(false)
-    setFailure('')
+    setFailure(false)
 
   try{
     
@@ -59,9 +62,9 @@ export default function Home({API_END_POINT}) {
 
     data.append('file',file)
     
-    const oldFileName = file?.name
+    const oldFileName: string = file?.name
 
-    const newFileName = oldFileName.substr(0, oldFileName.lastIndexOf(".")) + ".pdf"
+    const newFileName: string = oldFileName.substr(0, oldFileName.lastIndexOf(".")) + ".pdf"
   
     setFileName(newFileName)
 
@@ -130,7 +133,9 @@ export default function Home({API_END_POINT}) {
   )
 }
 
-export const getStaticProps = async () =>{
+export default Home
+
+export const getStaticProps :GetStaticProps = async () =>{
 
   return{
      props:{
