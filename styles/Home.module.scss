@@ -86,12 +86,25 @@
             img{
                 max-width: 100%;
                 width: 60%;
+                animation: moveImg 5s forwards;
+            }
+            #doc1{
+                color:  green !important;
+                transform: translateX(300px);
             }
         }
         
     }
 }
 
+@keyframes moveImg {
+    from{
+        transform: scale(.5);
+    }
+    to{
+        transform: scale(1);
+    }
+}
 @media (max-width:600px) {
     .main{
         flex-direction: column;
