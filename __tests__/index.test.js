@@ -1,6 +1,6 @@
 import React from 'react'
 import Index from '../pages/index'
-import { render , fireEvent, getByText} from '@testing-library/react'
+import { render} from '@testing-library/react'
 
 
 test('It should render  header section', () =>{

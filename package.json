@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest --watch"
+    "test:watch": "jest --watch",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.21.1",
