@@ -14,7 +14,7 @@ const Form = ({styles,
             <ProgressIndicator/>:
             <>
               <p>Drop a file here or </p>
-              <label htmlFor="fileInput" className={styles.input_label}>Browse file</label>
+              <label htmlFor="fileInput" className={styles.input_label} data-testid="browse_file_label">Browse file</label>
               <input 
                 type='file'
                 id="fileInput" 
