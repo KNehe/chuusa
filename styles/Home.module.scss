@@ -86,8 +86,6 @@
             img{
                 max-width: 100%;
                 width: 60%;
-                animation: moveImg 5s forwards;
-                animation-delay: 1s;
             }
             #doc1{
                 color:  green !important;
@@ -98,14 +96,6 @@
     }
 }
 
-@keyframes moveImg {
-    from{
-        transform: scale(.8);
-    }
-    to{
-        transform: scale(1);
-    }
-}
 @media (max-width:600px) {
     .main{
         flex-direction: column;
